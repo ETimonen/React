@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.posts {
+  padding: 2em;
+  background-color: rgb(192, 191, 191);
+  text-align: center;
+  border-style: dotted;
+  border-radius: 3%;
+}

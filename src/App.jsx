@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './App.css'
 import Laskuri from './Laskuri'
 import Viesti from './Viesti'
+import Posts from './Posts'
 
 const App = () => {
 
@@ -23,6 +24,8 @@ const App = () => {
         {!showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Näytä laskuri</button>}
 
         <Viesti teksti="tervehdys app komponentista" />
+
+        <Posts/>
 
       </div>
   )
