@@ -52,8 +52,16 @@
 .customerDetails {
   background-color: chocolate;
   border-style: solid;
-  width: 85%;
+  width: 100%;
   margin: auto;
   margin-bottom: 50px;
-  border-radius: 30px;
+  border-radius: 10px;
+}
+
+.nappi {
+  border-radius: 10px;
+  margin-left: 10px;
+  font-size: 26px;
+  background-color: chocolate;
+  color: white;
 }

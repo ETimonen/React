@@ -13,6 +13,7 @@ const [showDetails, setShowDetails] = useState(false)
         onMouseLeave={() => setShowDetails(false)}>{customer.companyName}</h4>
 
         {showDetails && <div className="customerDetails">
+            <h3>{customer.companyName}</h3>
             <table>
                 <thead>
                     <tr>
