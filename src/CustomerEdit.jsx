@@ -72,40 +72,49 @@ const handleSubmit = (event) => {
                 <input type="text" value={newCustomerId} disabled />
             </div>
             <div>
-                <input type="text" value={newCompanyName} placeholder="Company name"
-                    onChange={({ target }) => setNewCompanyName(target.value)} required />
+              <label>Company name</label>
+              <input type="text" value={newCompanyName} placeholder="Company name"
+                onChange={({ target }) => setNewCompanyName(target.value)} required />
             </div>
             <div>
-                <input type="text" value={newContactName} placeholder="Contact name"
-                    onChange={({ target }) => setNewContactName(target.value)} />
+              <label>Contact name</label>
+              <input type="text" value={newContactName} placeholder="Contact name"
+                onChange={({ target }) => setNewContactName(target.value)} />
             </div>
             <div>
-                <input type="text" value={newContactTitle} placeholder="Contact title"
-                    onChange={({ target }) => setNewContactTitle(target.value)} />
+              <label>Contact title</label>
+              <input type="text" value={newContactTitle} placeholder="Contact title"
+                onChange={({ target }) => setNewContactTitle(target.value)} />
             </div>
             <div>
-                <input type="text" value={newCountry} placeholder="Country"
-                    onChange={({ target }) => setNewCountry(target.value)} />
+              <label>Country</label>
+              <input type="text" value={newCountry} placeholder="Country"
+                onChange={({ target }) => setNewCountry(target.value)} />
             </div>
             <div>
-                <input type="text" value={newAddress} placeholder="Address"
-                    onChange={({ target }) => setNewAddress(target.value)} />
+              <label>Address</label>
+              <input type="text" value={newAddress} placeholder="Address"
+                onChange={({ target }) => setNewAddress(target.value)} />
             </div>
             <div>
-                <input type="text" value={newCity} placeholder="City"
-                    onChange={({ target }) => setNewCity(target.value)} />
+              <label>City</label>
+              <input type="text" value={newCity} placeholder="City"
+                onChange={({ target }) => setNewCity(target.value)} />
             </div>
             <div>
-                <input type="text" value={newPostalCode} placeholder="Postal code"
-                    onChange={({ target }) => setNewPostalCode(target.value)} />
+              <label>Postal code</label>
+              <input type="text" value={newPostalCode} placeholder="Postal code"
+                onChange={({ target }) => setNewPostalCode(target.value)} />
             </div>
             <div>
-                <input type="text" value={newPhone} placeholder="Phone"
-                    onChange={({ target }) => setNewPhone(target.value)} />
+              <label>Phone</label>
+              <input type="text" value={newPhone} placeholder="Phone"
+                onChange={({ target }) => setNewPhone(target.value)} />
             </div>
             <div>
-                <input type="text" value={newFax} placeholder="Fax"
-                    onChange={({ target }) => setNewFax(target.value)} />
+              <label>Fax</label>
+              <input type="text" value={newFax} placeholder="Fax"
+                onChange={({ target }) => setNewFax(target.value)} />
             </div>
          
          <input type='submit' value='save' />

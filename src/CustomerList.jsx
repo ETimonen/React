@@ -48,7 +48,7 @@ const editCustomer = (customer) => {
 
 
         {
-            showCustomers && customers && customers.map(c => (
+            !lisäystila && !muokkaustila && showCustomers && customers && customers.map(c => (
                 <Customer key={c.customerId} customer={c} reloadNow={reloadNow} reload={reload}
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
                 editCustomer={editCustomer}
