@@ -8,25 +8,27 @@ import Message from './Message'
 
 const App = () => {
 
-  // App komponentin tila
-  const [showLaskuri, setShowLaskuri] = useState(false)
+// App komponentin tila
+const [showLaskuri, setShowLaskuri] = useState(false)
+// Statet messagen näyttämistä varten
+const [showMessage, setShowMessage] = useState(false)
+const [message, setMessage] = useState('')
+const [isPositive, setIsPositive] = useState(false)
 
-  // Messagen statet
-  const [showMessage, setShowMessage] = useState(false)
-  const [message, setMessage] = useState('')
-  const [isPositive, setIsPositive] = useState(false)
 
-  const huomio = () => {
-    alert("Huomio!")
-  }
+const huomio = () => {
+  alert("Huomio!")
+} 
 
   return (
-      <div className="App">
+    <div className="App">
         <h1>Hello from React!</h1>
 
-        {showMessage && <Message message={message} isPositive={isPositive} />}
+       {showMessage && <Message message={message} isPositive={isPositive} /> }
 
         <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
+
+        <Posts />
 
         {showLaskuri && <Laskuri huomio={huomio} />}
 
@@ -34,11 +36,10 @@ const App = () => {
 
         {!showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Näytä laskuri</button>}
 
+
         <Viesti teksti="tervehdys app komponentista" />
-
-        <Posts/>
-
-      </div>
+        
+    </div>
   )
 }
 
