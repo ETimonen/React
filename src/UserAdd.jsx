@@ -13,6 +13,9 @@ const [newEmail, setNewEmail] = useState('')
 const [newAccesslevelId, setNewAccesslevelId] = useState(2)
 const [newUsername, setNewUsername] = useState('')
 const [newPassword, setNewPassword] = useState('')
+const [confirmPassword, setConfirmPassword] = useState('')
+
+const passwordsMatch = newPassword === confirmPassword
 
 // onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
@@ -43,7 +46,7 @@ const handleSubmit = (event) => {
         }
     })
     .catch(error => {
-        setMessage(error)
+        setMessage(error.message)
         setIsPositive(false)
         setShowMessage(true)
         
@@ -83,8 +86,13 @@ const handleSubmit = (event) => {
                 <input type='password' value={newPassword} 
                 onChange={({target}) => setNewPassword(target.value)} placeholder='Password'/>
             </div>
+            <div>
+                <input type='password' value={confirmPassword}
+                onChange={({ target }) => setConfirmPassword(target.value)} placeholder='Confirm Password' />
+            </div>
+            {!passwordsMatch && <p style={{ color: 'red' }}>Passwords do not match</p>}
 
-            <input type='submit' value='Save'/>
+            <input type='submit' value='Save' disabled={!passwordsMatch}/>
             <input type='button' value='Back' onClick={() => setLisäystila(false)}/>
         </form>
 

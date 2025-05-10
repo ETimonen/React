@@ -1,28 +1,28 @@
 import './App.css'
 import React, {useState, useEffect} from 'react'
-import UserService from './services/User'
-import UserAdd from './UserAdd'
-import UserEdit from './UserEdit'
+import ProductService from './services/Product'
+import ProductAdd from './ProductAdd'
+import ProductEdit from './ProductEdit'
 
-const UserList = ({setIsPositive, setShowMessage, setMessage}) => {
+const ProductList = ({setIsPositive, setShowMessage, setMessage}) => {
 
 // Komponentin tilan määritys
-const [users, setUsers] = useState([])
+const [products, setProducts] = useState([])
 const [lisäystila, setLisäystila] = useState(false)
 const [muokkaustila, setMuokkaustila] = useState(false)
 const [reload, reloadNow] = useState(false)
-const [muokattavaUser, setMuokattavaUser] = useState(false)
+const [muokattavaProduct, setMuokattavaProduct] = useState('')
 const [search, setSearch] = useState("")
 
 
 useEffect(() => {
 
   const token = localStorage.getItem('token')
-  UserService.setToken(token)
+  ProductService.setToken(token)
 
-  UserService.getAll()
+  ProductService.getAll()
   .then(data => {
-    setUsers(data)
+    setProducts(data)
         })
     },[lisäystila, reload, muokkaustila]
 )
@@ -32,19 +32,19 @@ const handleSearchInputChange = (event) => {
   setSearch(event.target.value.toLowerCase())
 }
 
-const editUsers = (user) => {
-  setMuokattavaUser(user)
+const editProducts = (prod) => {
+  setMuokattavaProduct(prod)
   setMuokkaustila(true)
 }
 
-const deleteUser = (user) => {
-    let vastaus = window.confirm(`Remove User ${user.username}?`)
+const deleteProduct = (prod) => {
+    let vastaus = window.confirm(`Remove Product ${prod.productName}?`)
 
     if (vastaus === true) {
-        UserService.remove(user.userId)
+        ProductService.remove(prod.productId)
         .then(res => {
             if (res.status === 200) {
-                setMessage(`Successfully removed user ${user.username}.`)
+                setMessage(`Successfully removed product ${prod.productName}.`)
                 setIsPositive(true)
                 setShowMessage(true)
                 window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert
@@ -86,45 +86,49 @@ const deleteUser = (user) => {
 
   return (
     <>
-        <h1><nobr>Users</nobr>
+        <h1><nobr>Products</nobr>
 
-                {lisäystila && <UserAdd setLisäystila={setLisäystila}
+                {lisäystila && <ProductAdd setLisäystila={setLisäystila}
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />}
 
                 {!lisäystila && <button className="nappi" onClick={() => setLisäystila(true)}>Add new</button>}</h1>
 
                 {!lisäystila && !muokkaustila &&
-                  <input placeholder="Search by lastname" value={search} onChange={handleSearchInputChange} />
+                  <input placeholder="Search by product name" value={search} onChange={handleSearchInputChange} />
                 }
 
-                {muokkaustila && <UserEdit setMuokkaustila={setMuokkaustila}
-                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} muokattavaUser={muokattavaUser} />}
+                {muokkaustila && <ProductEdit setMuokkaustila={setMuokkaustila}
+                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} muokattavaProduct={muokattavaProduct} />}
 
                 {!lisäystila && !muokkaustila &&
                 <table id="userTable">
                     <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Email</th>
-                            <th>Access level</th>
+                            <th>ProductID</th>
+                            <th>Product name</th>
+                            <th>Quantity per unit</th>
+                            <th>Unit price</th>
+                            <th>Units in stock</th>
+                            <th>Units on order</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {users && users.map(u => 
+                    {products && products.map(p => 
                             {
-                                const lowerCaseName = u.lastname.toLowerCase()
+                                const lowerCaseName = p.productName.toLowerCase()
                                 if (lowerCaseName.indexOf(search) > -1) {
                                     return(
-                                        <tr key={u.userId}>
-                                            <td>{u.firstname}</td>
-                                            <td>{u.lastname}</td>
-                                            <td>{u.email}</td>
-                                            <td>{u.accesslevelId}</td>
-                                            <td><button onClick={() => editUsers(u)}>Edit</button></td>
-                                            <td><button onClick={() => deleteUser(u)}>Delete</button></td>
+                                        <tr key={p.productId}>
+                                            <td>{p.productId}</td>
+                                            <td>{p.productName}</td>
+                                            <td>{p.quantityPerUnit}</td>
+                                            <td>{p.unitPrice}</td>
+                                            <td>{p.unitsInStock}</td>
+                                            <td>{p.unitsOnOrder}</td>
+                                            <td><button onClick={() => editProducts(p)}>Edit</button></td>
+                                            <td><button onClick={() => deleteProduct(p)}>Delete</button></td>
                                         </tr>
                                     )
                                 }
@@ -138,4 +142,4 @@ const deleteUser = (user) => {
   )
 }
 
-export default UserList
+export default ProductList

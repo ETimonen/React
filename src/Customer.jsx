@@ -9,13 +9,13 @@ const Customer = ({customer, editCustomer, setIsPositive, setMessage, setShowMes
 const [showDetails, setShowDetails] = useState(false)
 
 const deleteCustomer = (customer) => {
-    let vastaus = window.confirm(`Remove Customer ${customer.companyName}`)
+    let vastaus = window.confirm(`Remove Customer ${customer.companyName}?`)
 
     if (vastaus === true) {
         CustomerService.remove(customer.customerId)
         .then(res => {
             if (res.status === 200) {
-                setMessage(`Successfully removed customer ${customer.companyName} and related data.`)
+                setMessage(`Successfully removed customer ${customer.companyName}.`)
                 setIsPositive(true)
                 setShowMessage(true)
                 window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert

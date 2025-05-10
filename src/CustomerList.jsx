@@ -16,13 +16,26 @@ const [reload, reloadNow] = useState(false)
 const [muokattavaCustomer, setMuokattavaCustomer] = useState(false)
 const [search, setSearch] = useState("")
 
-
+// UseEffect ajetaan aina alussa kerran
 useEffect(() => {
+
+  const token = localStorage.getItem('token')
+  CustomerService.setToken(token)
+
   CustomerService.getAll()
   .then(data => {
     setCustomers(data)
 })
-},[lisäystila, reload, muokkaustila]
+  .catch(error => {
+    setMessage(error.message)
+    setIsPositive(false)
+    setShowMessage(true)
+    
+    setTimeout(() => {
+        setShowMessage(false)
+    }, 10000)
+})
+},[lisäystila, reload, muokkaustila] // Jos nämä statet muuttuvat useEffect() ajetaan uudelleen
 )
 
 //Hakukentän onChange tapahtumankäsittelijä

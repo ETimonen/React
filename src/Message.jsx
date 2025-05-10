@@ -10,7 +10,7 @@ const Message = ({ message, isPositive }) => {
     else {
         tyyli = "neg"
     }
-    
+
     return (
         <div className={tyyli}>
             {message}
