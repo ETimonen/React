@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://localhost:7041/api/products"
+const baseUrl = "https://northwindrestapi-gmccb0cxcfgcg0a5.swedencentral-01.azurewebsites.net/api/products"
 
 let token = null
 
